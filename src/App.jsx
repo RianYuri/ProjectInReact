@@ -1,60 +1,39 @@
-import ExpenseItem from './components/Expenses/ExpenseItem';
+import React from 'react';
 import NewExpense from './components/NewExpenses/NewExpense';
-import './App.css';
-function App() {
-  const expense = [
+import Expenses from './components/Expenses/Expenses';
+
+const App = () => {
+  const expenses = [
     {
-      id: "p1",
-      title: "Car Insurance",
-      amount: 399.67,
+      id: 'e1',
+      title: 'Toilet Paper',
+      amount: 94.12,
+      date: new Date(2020, 7, 14),
+    },
+    { id: 'e2', title: 'New TV', amount: 799.49, date: new Date(2021, 2, 12) },
+    {
+      id: 'e3',
+      title: 'Car Insurance',
+      amount: 294.67,
       date: new Date(2021, 2, 28),
     },
     {
-      id: "p2",
-      title: "Toilet paper",
-      amount: 99.67,
-      date: new Date(2020, 7, 18),
-    },
-    {
-      id: "p3",
-      title: "New Tv",
-      amount: 799.67,
-      date: new Date(2022, 5, 21),
-    },
-    {
-      id: "p4",
-      title: "New Desk (Wooden)",
+      id: 'e4',
+      title: 'New Desk (Wooden)',
       amount: 450,
-      date: new Date(2021, 6, 16),
+      date: new Date(2021, 5, 12),
     },
   ];
+
+  const addExpenseHandler = expense => {
+    console.log('In App.js');
+    console.log(expense);
+  };
   return (
-  <div>
-     <NewExpense/>
-    <div className='app'>   
-      <ExpenseItem
-      title={expense[0].title}
-      amount={expense[0].amount}
-      date={expense[0].date}>
-      </ExpenseItem>
-      <ExpenseItem
-      title={expense[1].title}
-      amount={expense[1].amount}
-      date={expense[1].date}>
-      </ExpenseItem>
-      <ExpenseItem
-      title={expense[2].title}
-      amount={expense[2].amount}
-      date={expense[2].date}>
-      </ExpenseItem>
-      <ExpenseItem
-      title={expense[3].title}
-      amount={expense[3].amount}
-      date={expense[3].date}>
-      </ExpenseItem>
-    </div>
+    <div>
+      <NewExpense onAddExpense={addExpenseHandler} />
+      <Expenses items={expenses} />
     </div>
   );
 }
-
 export default App;
